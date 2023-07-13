@@ -1,152 +1,171 @@
----
-title: Getting Started with ESLint
-eleventyNavigation:
-    key: getting started 
-    parent: use eslint
-    title: Getting Started
-    order: 1
-
----
-
-ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, with the goal of making code more consistent and avoiding bugs.
-
-ESLint is completely pluggable. Every single rule is a plugin and you can add more at runtime. You can also add community plugins, configurations, and parsers to extend the functionality of ESLint.
-
-## Prerequisites
-
-To use ESLint, you must have [Node.js](https://nodejs.org/en/) (`^12.22.0`, `^14.17.0`, or `>=16.0.0`) installed and built with SSL support. (If you are using an official Node.js distribution, SSL is always built in.)
-
-## Quick start
-
-You can install and configure ESLint using this command:
-
-```shell
-npm init @eslint/config
-```
-
-If you want to use a specific shareable config that is hosted on npm, you can use the `--config` option and specify the package name:
-
-```shell
-# use `eslint-config-semistandard` shared config
-
-# npm 7+
-npm init @eslint/config -- --config semistandard
-
-# or (`eslint-config` prefix is optional)
-npm init @eslint/config -- --config eslint-config-semistandard
-
-# ⚠️ npm 6.x no extra double-dash:
-npm init @eslint/config --config semistandard
-
-```
-
-The `--config` flag also supports passing in arrays:
-
-```shell
-npm init @eslint/config -- --config semistandard,standard
-# or
-npm init @eslint/config -- --config semistandard --config standard
-```
-
-**Note:** `npm init @eslint/config` assumes you have a `package.json` file already. If you don't, make sure to run `npm init` or `yarn init` beforehand.
-
-After that, you can run ESLint on any file or directory like this:
-
-```shell
-npx eslint yourfile.js
-
-# or
-
-yarn run eslint yourfile.js
-```
-
-## Configuration
-
-**Note:** If you are coming from a version before 1.0.0 please see the [migration guide](migrating-to-1.0.0).
-
-After running `npm init @eslint/config`, you'll have an `.eslintrc.{js,yml,json}` file in your directory. In it, you'll see some rules configured like this:
-
-```json
-{
-    "rules": {
-        "semi": ["error", "always"],
-        "quotes": ["error", "double"]
-    }
-}
-```
-
-The names `"semi"` and `"quotes"` are the names of [rules](../rules) in ESLint. The first value is the error level of the rule and can be one of these values:
-
-* `"off"` or `0` - turn the rule off
-* `"warn"` or `1` - turn the rule on as a warning (doesn't affect exit code)
-* `"error"` or `2` - turn the rule on as an error (exit code will be 1)
-
-The three error levels allow you fine-grained control over how ESLint applies rules (for more configuration options and details, see the [configuration docs](configure/)).
-
-Your `.eslintrc.{js,yml,json}` configuration file will also include the line:
-
-```json
-{
-    "extends": "eslint:recommended"
-}
-```
-
-Because of this line, all of the rules marked "(recommended)" on the [rules page](../rules) will be turned on.  Alternatively, you can use configurations that others have created by searching for "eslint-config" on [npmjs.com](https://www.npmjs.com/search?q=eslint-config).  ESLint will not lint your code unless you extend from a shared configuration or explicitly turn rules on in your configuration.
-
-## Global Install
-
-It is also possible to install ESLint globally, rather than locally, using `npm install eslint --global`. However, this is not recommended, and any plugins or shareable configs that you use must still be installed locally if you install ESLint globally.
-
-## Manual Set Up
-
-You can also manually set up ESLint in your project.
-
-Before you begin, you must already have a `package.json` file. If you don't, make sure to run `npm init` or `yarn init` to create the file beforehand.
-
-1. Install the ESLint package in your project:
-
-   ```shell
-   npm install --save-dev eslint
-   ```
-
-1. Add an `.eslintrc` file in one of the [supported configuration file formats](./configure/configuration-files#configuration-file-formats).
-
-   ```shell
-   # Create JavaScript configuration file
-   touch .eslintrc.js
-   ```
-
-1. Add configuration to the `.eslintrc` file. Refer to the [Configure ESLint documentation](configure/) to learn how to add rules, environments, custom configurations, plugins, and more.
-
-   ```js
-   // .eslintrc.js example
-   module.exports = {
-     "env": {
-         "browser": true,
-         "es2021": true
-     },
-     "extends": "eslint:recommended",
-     "parserOptions": {
-         "ecmaVersion": "latest",
-         "sourceType": "module"
-     },
-   }
-   ```
-
-1. Lint code using the ESLint CLI:
-
-   ```shell
-   npx eslint project-dir/ file1.js
-   ```
-
-   For more information on the available CLI options, refer to [Command Line Interface](./command-line-interface).
-
----
-
-## Next Steps
-
-* Learn about [advanced configuration](configure/) of ESLint.
-* Get familiar with the [command line options](command-line-interface).
-* Explore [ESLint integrations](integrations) into other tools like editors, build systems, and more.
-* Can't find just the right rule?  Make your own [custom rule](../extend/custom-rules).
-* Make ESLint even better by [contributing](../contribute/).
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Folio</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Production-ready Portfolio and Case Study Template for Visual Designers">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@ui8">
+    <meta name="twitter:title" content="Folio Designer">
+    <meta name="twitter:description" content="Production-ready Portfolio and Case Study Template for Visual Designers">
+    <meta name="twitter:creator" content="@ui8">
+    <meta name="twitter:image" content="https://ui8-folio.herokuapp.com/img/twitter-card.jpg">
+    <meta property="og:title" content="Folio Designer">
+    <meta property="og:type" content="Article">
+    <meta property="og:url" content="https://ui8.net/ui8/products/folio-designer">
+    <meta property="og:image" content="https://ui8-folio.herokuapp.com/img/fb-og-image.jpg">
+    <meta property="og:description" content="Production-ready Portfolio and Case Study Template for Visual Designers">
+    <meta property="og:site_name" content="Folio Designer">
+    <meta property="fb:admins" content="132951670226590">
+    <link rel="stylesheet" media="all" href="css/app.css">
+    <script>var viewportmeta = document.querySelector('meta[name="viewport"]');
+if (viewportmeta) {
+  if (screen.width < 375) {
+    var newScale = screen.width / 375;
+    viewportmeta.content = 'width=375, minimum-scale=' + newScale + ', maximum-scale=1.0, user-scalable=no, initial-scale=' + newScale + '';
+  } else {
+    viewportmeta.content = 'width=device-width, maximum-scale=1.0, initial-scale=1.0';
+  }
+}</script>
+  </head>
+  <body>
+    <div class="page">
+      <div class="main">
+        <div class="header js-header" id="header">
+          <div class="header__center center"><a class="header__logo" href="index.html"><img class="header__pic" src="img/logo.svg" alt="" /></a>
+            <div class="header__social header__social_main"><a class="header__link" href="#"><svg class="icon icon-dribbble">
+                  <use xlink:href="img/sprite.svg#icon-dribbble"></use>
+                </svg>Dribbble</a><a class="header__link" href="#"><svg class="icon icon-instagram">
+                  <use xlink:href="img/sprite.svg#icon-instagram"></use>
+                </svg>Instagram</a></div><button class="header__burger js-header-burger"></button>
+          </div>
+          <div class="header__wrapper js-header-wrapper">
+            <div class="header__preview"><a class="header__logo" href="index.html"><img class="header__pic" src="img/logo-white.svg" alt="" /></a>
+              <div class="header__img"><img class="header__pic" src="img/bg-header.png" alt="" /></div>
+            </div>
+            <div class="header__center center">
+              <div class="header__contacts"><a class="header__line" href="mailto:hello@ui8.net">
+                  <div class="header__icon"><svg class="icon icon-email">
+                      <use xlink:href="img/sprite.svg#icon-email"></use>
+                    </svg></div>
+                  <div class="header__text">njadaun72@gmail.com</div>
+                </a>
+                <div class="header__line">
+                  <div class="header__icon"><svg class="icon icon-place">
+                      <use xlink:href="img/sprite.svg#icon-place"></use>
+                    </svg></div>
+                  <div class="header__text">
+                    <p>Jaipur</p>
+                    <p>Raja Park✌️</p>
+                  </div>
+                </div><a class="header__line" href="tel:+917976728896">
+                  <div class="header__icon"><svg class="icon icon-phone">
+                      <use xlink:href="img/sprite.svg#icon-phone"></use>
+                    </svg></div>
+                  <div class="header__text">+91 7976728896 </div>
+                </a>
+              </div>
+              <nav class="header__nav"><a class="header__item" href="#"><span>About</span></a><a class="header__item" href="#"><span>Work</span></a><a class="header__item" href="#"><span>Services</span></a><a class="header__item" href="#"><span>Contact</span></a></nav>
+              <div class="header__social header__social_inner"><a class="header__link" href="#"><svg class="icon icon-dribbble">
+                    <use xlink:href="img/sprite.svg#icon-dribbble"></use>
+                  </svg>Dribbble</a><a class="header__link" href="#"><svg class="icon icon-instagram">
+                    <use xlink:href="img/sprite.svg#icon-instagram"></use>
+                  </svg>Instagram</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="main__bg"><img class="main__pic" src="img/bg-main.jpg" alt=""></div>
+        <div class="main__center center">
+          <div class="main__wrap">
+            <div class="main__stage stage" data-aos="transform">Jack Gross</div>
+            <h1 class="main__title title h1"><span data-aos="transform" data-aos-delay="150">Hello, my</span><span data-aos="transform" data-aos-delay="300">name's Jack.</span><span data-aos="transform" data-aos-delay="450">I'm a Visual</span><span data-aos="transform" data-aos-delay="600">Designer.</span></h1><a class="scroll js-scroll" href="#details" data-aos="transform">
+              <div class="scroll__icon"><img class="scroll__pic" src="img/scroll.svg" alt=""></div>
+              <div class="scroll__text">Scroll down</div>
+            </a>
+          </div>
+        </div>
+        <div class="main__view" data-aos>
+          <div class="main__preview"><img class="main__pic" src="img/main-pic-6.png" alt=""></div>
+          <div class="main__preview"><img class="main__pic js-parallax" data-scale="2.5" data-orientation="up" src="img/main-pic-1.png" alt=""></div>
+          <div class="main__preview"><img class="main__pic js-parallax" data-scale="1.5" data-orientation="up" src="img/main-pic-2.png" alt=""></div>
+          <div class="main__preview"><img class="main__pic" src="img/main-pic-3.png" alt=""></div>
+          <div class="main__preview"><img class="main__pic" src="img/main-pic-4.png" alt=""></div>
+          <div class="main__preview"><img class="main__pic js-parallax" data-scale="4.5" data-orientation="up" src="img/main-pic-5.png" alt=""></div>
+          <div class="main__preview"><img class="main__pic js-parallax" data-scale="1.5" data-orientation="down" src="img/main-pic-7.png" alt=""></div>
+        </div>
+        <div class="main__figures">
+          <div class="main__figure" data-aos="animation-translate-y"><img class="main__pic js-parallax" data-scale="2.2" data-orientation="down" src="img/figure-1.png" alt=""></div>
+          <div class="main__figure" data-aos="animation-translate-y" data-aos-delay="200"><img class="main__pic js-parallax" data-scale="2.2" data-orientation="up" src="img/figure-2.png" alt=""></div>
+          <div class="main__figure" data-aos="animation-translate-y" data-aos-delay="400"><img class="main__pic" src="img/figure-3.png" alt=""></div>
+        </div>
+      </div>
+      <div class="details" id="details">
+        <div class="details__center center">
+          <div class="details__head" data-aos="animation-scale-y">
+            <div class="details__stage stage">What I Do</div>
+            <h3 class="details__info h3">I enjoy creating delightful,  <br>human-centered digital experiences.</h3>
+          </div>
+          <h2 class="details__title" data-aos="animation-scale-y">Think. Make. <br>Solve. </h2>
+          <div class="details__btn" data-aos="animation-translate-y"><button class="btn btn_purple"><span class="btn__text">Contact Me</span><svg class="icon icon-arrow-right">
+                <use xlink:href="img/sprite.svg#icon-arrow-right"></use>
+              </svg></button></div>
+          <div class="details__container">
+            <div class="details__slider owl-carousel js-slider-details">
+              <div class="details__item">
+                <div class="details__preview details__preview_cursor" data-aos="animation-scale">
+                  <div class="details__img"><img class="details__pic" src="img/cursor.png" alt=""></div>
+                </div>
+                <h5 class="details__category h5" data-aos="animation-scale-y">User Interface</h5>
+                <div class="details__text" data-aos="animation-scale-y">We have got quite a few already made templates for better project management that you can use now.</div>
+                <div class="details__btn" data-aos="animation-scale-y"><button class="btn btn_dark">Find out more </button></div>
+              </div>
+              <div class="details__item">
+                <div class="details__preview details__preview_hand" data-aos="animation-scale" data-aos-delay="150">
+                  <div class="details__img"><img class="details__pic" src="img/hand.png" alt=""></div>
+                </div>
+                <h5 class="details__category h5" data-aos="animation-scale-y" data-aos-delay="150">User Experience</h5>
+                <div class="details__text" data-aos="animation-scale-y" data-aos-delay="150">We have got quite a few already made templates for better project management that you can use now.</div>
+                <div class="details__btn" data-aos="animation-scale-y" data-aos-delay="150"><button class="btn btn_dark">Find out more </button></div>
+              </div>
+              <div class="details__item">
+                <div class="details__preview details__preview_color" data-aos="animation-scale" data-aos-delay="300">
+                  <div class="details__img"><img class="details__pic" src="img/color-picker.png" alt=""></div>
+                </div>
+                <h5 class="details__category h5" data-aos="animation-scale-y" data-aos-delay="300">UI Design Kit</h5>
+                <div class="details__text" data-aos="animation-scale-y" data-aos-delay="300">We have got quite a few already made templates for better project management that you can use now.</div>
+                <div class="details__btn" data-aos="animation-scale-y" data-aos-delay="300"><button class="btn btn_dark">Find out more </button></div>
+              </div>
+              <div class="details__item">
+                <div class="details__preview details__preview_cursor">
+                  <div class="details__img"><img class="details__pic" src="img/cursor.png" alt=""></div>
+                </div>
+                <h5 class="details__category h5">User Interface</h5>
+                <div class="details__text">We have got quite a few already made templates for better project management that you can use now.</div><button class="details__btn btn btn_dark">Find out more </button>
+              </div>
+              <div class="details__item">
+                <div class="details__preview details__preview_hand">
+                  <div class="details__img"><img class="details__pic" src="img/hand.png" alt=""></div>
+                </div>
+                <h5 class="details__category h5">User Experience</h5>
+                <div class="details__text">We have got quite a few already made templates for better project management that you can use now.</div><button class="details__btn btn btn_dark">Find out more</button>
+              </div>
+              <div class="details__item">
+                <div class="details__preview details__preview_color">
+                  <div class="details__img"><img class="details__pic" src="img/color-picker.png" alt=""></div>
+                </div>
+                <h5 class="details__category h5">UI Design Kit</h5>
+                <div class="details__text">We have got quite a few already made templates for better project management that you can use now.</div><button class="details__btn btn btn_dark">Find out more</button>
+              </div>
+            </div>
+          </div>
+        </div> this is a 450 line code i am slplitting the code i eant to update or replace NAME JACK TO Narendra email njadaun72@gmail.com contact 7976728896i will upload next parts of the code write updated code  like this that it will not affect the another part of code u have to do only these correction in all parts of code this is part one and ill upload next part after this
